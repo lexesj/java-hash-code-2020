@@ -14,6 +14,12 @@ public class SampleProblem {
   }
 
   void solve() {
+    List<Integer> ans = solveGreedy();
+
+    printAns(ans);
+  }
+
+  List<Integer> solveGreedy() {
     int sum = 0;
     LinkedList<Integer> ans = new LinkedList<>();
     for (int i = pizzaSlices.length - 1; i >= 0; --i) {
@@ -24,7 +30,7 @@ public class SampleProblem {
       }
     }
 
-    printAns(ans);
+    return ans;
   }
 
   void getInput() {
