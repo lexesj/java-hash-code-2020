@@ -26,4 +26,5 @@ solve_all() {
   done
 }
 
+compile
 solve_all
