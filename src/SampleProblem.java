@@ -14,23 +14,53 @@ public class SampleProblem {
   }
 
   void solve() {
-    List<Integer> ans = solveGreedy();
+    List<Integer> ans = solveRepeatedGreedy();
 
     printAns(ans);
+
+    System.out.println();
+    System.out.println(getScore(ans));
   }
 
   List<Integer> solveGreedy() {
+    return solveGreedy(pizzaSlices.length - 1);
+  }
+
+  int getScore(List<Integer> ans) {
+    int sum = 0;
+    for (int index : ans) {
+      sum += pizzaSlices[index];
+    }
+    return sum;
+  }
+
+  List<Integer> solveGreedy(int startIndex) {
     int sum = 0;
     LinkedList<Integer> ans = new LinkedList<>();
-    for (int i = pizzaSlices.length - 1; i >= 0; --i) {
+    for (int i = startIndex; i >= 0; --i) {
       int numSlices = pizzaSlices[i];
       if (sum + numSlices <= sliceMax) {
         sum += numSlices;
         ans.addFirst(i);
       }
     }
-
     return ans;
+  }
+
+  List<Integer> solveRepeatedGreedy() {
+    int maxScore = Integer.MIN_VALUE;
+    List<Integer> bestAns = new LinkedList<>();
+    for (int i = 0; i < pizzaSlices.length; i++) {
+      int startIndex = pizzaSlices.length - i - 1;
+      List<Integer> ans = solveGreedy(startIndex);
+      int score = getScore(ans);
+      System.out.println(score);
+      if (score > maxScore) {
+        maxScore = score;
+        bestAns = ans;
+      }
+    }
+    return bestAns;
   }
 
   void getInput() {
