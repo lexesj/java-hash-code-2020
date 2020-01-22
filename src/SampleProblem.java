@@ -51,7 +51,6 @@ public class SampleProblem {
       int startIndex = pizzaSlices.length - i - 1;
       List<Integer> ans = solveGreedy(startIndex);
       int score = getScore(ans);
-      System.out.println(score);
       if (score > maxScore) {
         maxScore = score;
         bestAns = ans;
