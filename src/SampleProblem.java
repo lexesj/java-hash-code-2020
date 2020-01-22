@@ -17,9 +17,6 @@ public class SampleProblem {
     List<Integer> ans = solveRepeatedGreedy();
 
     printAns(ans);
-
-    System.out.println();
-    System.out.println(getScore(ans));
   }
 
   List<Integer> solveGreedy() {
