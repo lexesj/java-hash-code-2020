@@ -17,6 +17,7 @@ public class Problem {
     List<LibraryAnswer> answers = new ArrayList<>();
     for (int i = 0; i < libraries.length; i++)  {
       Library lib = libraries[i];
+      Arrays.sort(lib.books, Collections.reverseOrder(Comparator.comparing((Integer book) -> scores[book])));
       lib.score = (1d / lib.signupLen) * lib.numBooksPerDay;
     }
 
@@ -53,7 +54,7 @@ public class Problem {
       int numBooks = scanner.nextInt();
       int signupLen = scanner.nextInt();
       int numBooksPerDay = scanner.nextInt();
-      int[] books = new int[numBooks];
+      Integer[] books = new Integer[numBooks];
       for (int j = 0; j < books.length; j++) {
         books[j] = scanner.nextInt();
       }
@@ -66,9 +67,9 @@ public class Problem {
     int numBooksPerDay;
     double score;
     int libraryNum;
-    int[] books;
+    Integer[] books;
 
-    Library(int signupLen, int numBooksPerDay, int[] books, double score, int libraryNum) {
+    Library(int signupLen, int numBooksPerDay, Integer[] books, double score, int libraryNum) {
       this.score = score;
       this.libraryNum = libraryNum;
       this.signupLen = signupLen;
@@ -79,9 +80,9 @@ public class Problem {
 
   class LibraryAnswer {
     int libraryNum;
-    int[] books;
+    Integer[] books;
 
-    LibraryAnswer(int libraryNum, int[] books) {
+    LibraryAnswer(int libraryNum, Integer[] books) {
       this.libraryNum = libraryNum;
       this.books = books;
     }
