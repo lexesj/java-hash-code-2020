@@ -2,7 +2,7 @@
 
 ![banner](/images/final_score.png)
 
-Our Google Hash Code 2020 solution.
+Team "Python is a C Wrapper" solution for Google Hash Code 2020.
 
 ## Getting Started
 ### Installing
