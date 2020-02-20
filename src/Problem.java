@@ -14,15 +14,19 @@ public class Problem {
 
   public void bruteForce() {
     getInput();
-    LibraryAnswer a = new LibraryAnswer(0, new int[]{1, 2, 3});
-    printAnswer(new LibraryAnswer[]{a});
+    List<LibraryAnswer> answers = new ArrayList<>();
+    for (int i = 0 ; i < libraries.length; i++) {
+      Library lib = libraries[i];
+      answers.add(new LibraryAnswer(i, lib.books));
+    }
+    printAnswer(answers);
   }
 
-  public void printAnswer(LibraryAnswer[] answers) {
-    System.out.println(answers.length);
-    for (int i = 0; i < answers.length; i++) {
-      LibraryAnswer answer = answers[i];
-      System.out.println(answer.libraryNum + answer.books.length);
+  public void printAnswer(List<LibraryAnswer> answers) {
+    System.out.println(answers.size());
+    for (int i = 0; i < answers.size(); i++) {
+      LibraryAnswer answer = answers.get(i);
+      System.out.println(answer.libraryNum + " " + answer.books.length);
       for (int j = 0; j < answer.books.length; j++) {
         System.out.print(answer.books[j] + " ");
       }
