@@ -3,8 +3,7 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class Problem {
-    File file = new File ("C:\\Users\\adaso\\Desktop\\cosie\\cpp\\kody\\b_read_on.txt");
-    Scanner scanner;
+    Scanner scanner = new Scanner (System.in);
 
     int numDaysForScanning;
     int[] scores;
@@ -12,9 +11,6 @@ public class Problem {
 
     public static void main(String[] args) {
         Problem p = new Problem();
-        try {
-            p.scanner = new Scanner(p.file);
-        }catch (Exception e){};
         p.bruteForce();
     }
 
