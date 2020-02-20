@@ -15,9 +15,16 @@ public class Problem {
   public void bruteForce() {
     getInput();
     List<LibraryAnswer> answers = new ArrayList<>();
+    for (int i = 0; i < libraries.length; i++)  {
+      Library lib = libraries[i];
+      lib.score = (1d / lib.signupLen) * lib.numBooksPerDay;
+    }
+
+    Arrays.sort(libraries, Collections.reverseOrder(Comparator.comparing((Library lib) -> lib.score)));
+
     for (int i = 0 ; i < libraries.length; i++) {
       Library lib = libraries[i];
-      answers.add(new LibraryAnswer(i, lib.books));
+      answers.add(new LibraryAnswer(lib.libraryNum, lib.books));
     }
     printAnswer(answers);
   }
@@ -57,11 +64,11 @@ public class Problem {
   class Library {
     int signupLen;
     int numBooksPerDay;
-    int score;
+    double score;
     int libraryNum;
     int[] books;
 
-    Library(int signupLen, int numBooksPerDay, int[] books, int score, int libraryNum) {
+    Library(int signupLen, int numBooksPerDay, int[] books, double score, int libraryNum) {
       this.score = score;
       this.libraryNum = libraryNum;
       this.signupLen = signupLen;
