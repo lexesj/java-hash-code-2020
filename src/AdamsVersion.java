@@ -32,6 +32,8 @@ public class Problem {
                     sum /= lib.signupLen;
 //      lib.score = (1d / lib.signupLen) * lib.numBooksPerDay;
                     lib.score = sum;
+                    if (lib.used)
+                        lib.score=-1;
                 }
             }
             Arrays.sort(libraries, Collections.reverseOrder(Comparator.comparing((Library lib) -> lib.score)));
@@ -44,10 +46,12 @@ public class Problem {
                 books.add(iter.next());
             }
             lib.booksToSubmit=books;
-            libraries[0]=null;
+            libraries[0].used=true;
             for(Library lib2 : libraries) {
-                for (Book book: books) {
-                    lib2.books.remove(book);
+                if(lib2!=null) {
+                    for (Book book : books) {
+                        lib2.books.remove(book);
+                    }
                 }
             }
             answers.add(new LibraryAnswer(lib.libraryNum,books));
@@ -80,7 +84,7 @@ public class Problem {
             int signupLen = scanner.nextInt();
             int numBooksPerDay = scanner.nextInt();
             TreeSet <Book> books = new TreeSet ();
-            for (int j = 0; j < books.size(); j++) {
+            for (int j = 0; j < numBooks; j++) {
                 int x = scanner.nextInt();
                 books.add(new Book(scores[x],x));
             }
@@ -95,6 +99,7 @@ public class Problem {
         int libraryNum;
         TreeSet books;
         ArrayList <Book> booksToSubmit;
+        boolean used =false;
         Library(int signupLen, int numBooksPerDay, TreeSet <Book> books, double score, int libraryNum) {
             this.score = score;
             this.libraryNum = libraryNum;
