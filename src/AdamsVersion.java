@@ -1,8 +1,10 @@
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.*;
 
 public class Problem {
-    Scanner scanner = new Scanner(System.in);
+    File file = new File ("C:\\Users\\adaso\\Desktop\\cosie\\cpp\\kody\\b_read_on.txt");
+    Scanner scanner;
 
     int numDaysForScanning;
     int[] scores;
@@ -10,6 +12,9 @@ public class Problem {
 
     public static void main(String[] args) {
         Problem p = new Problem();
+        try {
+            p.scanner = new Scanner(p.file);
+        }catch (Exception e){};
         p.bruteForce();
     }
 
@@ -44,6 +49,7 @@ public class Problem {
             Iterator <Book> iter = lib.books.iterator();
             while(numOfBooksToSubmit>0 && iter.hasNext()) {
                 books.add(iter.next());
+                numOfBooksToSubmit--;
             }
             lib.booksToSubmit=books;
             libraries[0].used=true;
@@ -118,7 +124,7 @@ public class Problem {
         public int compareTo  (Book other) {
             if(this.score>other.score)
                 return -1;
-            if(this.score==other.score)
+            if(this.bookID==other.bookID)
                 return 0;
             return 1;
         }
