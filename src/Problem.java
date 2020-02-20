@@ -15,15 +15,21 @@ public class Problem {
   public void bruteForce() {
     getInput();
     List<LibraryAnswer> answers = new ArrayList<>();
-    for (int i = 0; i < libraries.length; i++)  {
+    for (int i = 0; i < libraries.length; i++) {
       Library lib = libraries[i];
-      Arrays.sort(lib.books, Collections.reverseOrder(Comparator.comparing((Integer book) -> scores[book])));
-      lib.score = (1d / lib.signupLen) * lib.numBooksPerDay;
+      Arrays.sort(lib.books,
+          Collections.reverseOrder(Comparator.comparing((Integer book) -> scores[book])));
+      int sum = 0;
+      for (int j = 0; j < lib.books.length; j++) {
+        sum += scores[lib.books[j]];
+      }
+      lib.score = sum / (lib.signupLen);
     }
 
-    Arrays.sort(libraries, Collections.reverseOrder(Comparator.comparing((Library lib) -> lib.score)));
+    Arrays.sort(
+        libraries, Collections.reverseOrder(Comparator.comparing((Library lib) -> lib.score)));
 
-    for (int i = 0 ; i < libraries.length; i++) {
+    for (int i = 0; i < libraries.length; i++) {
       Library lib = libraries[i];
       answers.add(new LibraryAnswer(lib.libraryNum, lib.books));
     }
@@ -88,5 +94,3 @@ public class Problem {
     }
   }
 }
-
-
