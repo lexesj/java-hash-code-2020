@@ -50,16 +50,20 @@ public class Problem {
       for (int j = 0; j < books.length; j++) {
         books[j] = scanner.nextInt();
       }
-      libraries[i] = new Library(signupLen, numBooksPerDay, books);
+      libraries[i] = new Library(signupLen, numBooksPerDay, books, 0, i);
     }
   }
 
   class Library {
     int signupLen;
     int numBooksPerDay;
+    int score;
+    int libraryNum;
     int[] books;
 
-    Library(int signupLen, int numBooksPerDay, int[] books) {
+    Library(int signupLen, int numBooksPerDay, int[] books, int score, int libraryNum) {
+      this.score = score;
+      this.libraryNum = libraryNum;
       this.signupLen = signupLen;
       this.numBooksPerDay = numBooksPerDay;
       this.books = books;
